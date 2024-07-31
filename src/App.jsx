@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {bible} from './bible.js'
 
 const abbreviations = {
   '창세기': ['창'],
@@ -70,6 +71,7 @@ const abbreviations = {
 
 function App() {
   const [input, setInput] = useState('');
+  const [origin, setOrigin] = useState('');
   const [chapter, setChapter] = useState('');
   const [verse, setVerse] = useState('');
   const [output, setOutput] = useState('');
@@ -106,16 +108,37 @@ function App() {
     const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
     const onlyKor = result.match(koreanRegex);
     // setOutput(result2 ? onlyKor.join('') : '');
-    console.log('Korean only : ', onlyKor.join('') )
-    console.log('Chapter: ', chapter )
-    console.log('verse: ', verse )
+    const chapterName = onlyKor.join('')
+    setOrigin(chapterName)
+    // console.log('Korean only : ', chapterName )
+    // console.log('Chapter: ', chapter )
+    // console.log('verse: ', verse )
+    // console.log('Bible : ', bible)
+
+    if (chapterName in bible) {
+      const all =  bible[chapterName];
+      console.log("Find from Bible : ", all)
+      let chapterNum = chapterName +chapter+"장"
+      // console.log('Check name : ', chapterNum)
+      if(chapterNum in all) {
+        const chapAll =  all[chapterNum];
+        console.log("chpa: ", chapAll)
+        if(verse in chapAll) {
+          const res =  chapAll[verse];
+          console.log("verse : ", res)
+          setOutput(res);
+        }
+      }
+    }
     
-    setOutput(result);
+    
+    
+    // setOutput(result);
   };
 
   return (
     <div className="App">
-      <h1>준말을 표준말로 변환하기</h1>
+      <h1>성경 찾기</h1>
       {/* <textarea 
         value={input} 
         onChange={handleInputChange} 
@@ -144,8 +167,8 @@ function App() {
       />
       <span>절</span>
       <br />
-      <button onClick={convertToStandard}>변환하기</button>
-      <h2>변환 결과:</h2>
+      <button onClick={convertToStandard}>찾기</button>
+      <h2>결과:<span>{origin}</span></h2>
       <p>{output}</p>
     </div>
   );
