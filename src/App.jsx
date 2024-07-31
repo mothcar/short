@@ -80,12 +80,15 @@ function App() {
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
+    setNumber(0)
   };
   const handleChapterChange = (e) => {
     setChapter(e.target.value);
+    setNumber(0)
   };
   const handleVerseChange = (e) => {
     setVerse(e.target.value);
+    setNumber(0)
   };
 
   const convertToStandard = () => {
@@ -134,18 +137,11 @@ function App() {
         }
       }
     }
-
     setNumber(number +1)
-    
-    
-    
-    
-    // setOutput(result);
   };
 
   function readMore () {
     convertToStandard()
-    // setDisverse(number+1)
   }
 
   return (
