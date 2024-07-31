@@ -74,7 +74,9 @@ function App() {
   const [origin, setOrigin] = useState('');
   const [chapter, setChapter] = useState('');
   const [verse, setVerse] = useState('');
+  const [disVerse, setDisverse] = useState('');
   const [output, setOutput] = useState('');
+  const [number, setNumber] = useState(0);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -117,24 +119,34 @@ function App() {
 
     if (chapterName in bible) {
       const all =  bible[chapterName];
-      console.log("Find from Bible : ", all)
+      // console.log("Find from Bible : ", all)
       let chapterNum = chapterName +chapter+"장"
       // console.log('Check name : ', chapterNum)
       if(chapterNum in all) {
         const chapAll =  all[chapterNum];
-        console.log("chpa: ", chapAll)
-        if(verse in chapAll) {
-          const res =  chapAll[verse];
-          console.log("verse : ", res)
+        // console.log("chpa: ", chapAll)
+        const newVerse = Number(verse) + Number(number)
+        if(newVerse in chapAll) {
+          const res =  chapAll[newVerse];
+          // console.log("verse : ", res)
           setOutput(res);
+          setDisverse(newVerse)
         }
       }
     }
+
+    setNumber(number +1)
+    
     
     
     
     // setOutput(result);
   };
+
+  function readMore () {
+    convertToStandard()
+    // setDisverse(number+1)
+  }
 
   return (
     <div className="App">
@@ -168,8 +180,12 @@ function App() {
       <span>절</span>
       <br />
       <button onClick={convertToStandard}>찾기</button>
-      <h2>결과:<span>{origin}</span></h2>
+      <h2>결과:<span>{origin} {chapter}장 {disVerse}절</span></h2>
       <p>{output}</p>
+
+      <div>
+      <button onClick={readMore}>계속읽기</button>
+      </div>
     </div>
   );
 }
