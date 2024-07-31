@@ -20,7 +20,7 @@ const abbreviations = {
   '욥기': ['욥'],
   '시편': ['시'],
   '잠언': ['잠'],
-  '전도서': ['전'],
+  '전도서': ['전도'],
   '아가': ['아'],
   '이사야': ['이'],
   '예레미아': ['예'],
@@ -70,10 +70,18 @@ const abbreviations = {
 
 function App() {
   const [input, setInput] = useState('');
+  const [chapter, setChapter] = useState('');
+  const [verse, setVerse] = useState('');
   const [output, setOutput] = useState('');
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
+  };
+  const handleChapterChange = (e) => {
+    setChapter(e.target.value);
+  };
+  const handleVerseChange = (e) => {
+    setVerse(e.target.value);
   };
 
   const convertToStandard = () => {
@@ -99,6 +107,8 @@ function App() {
     const onlyKor = result.match(koreanRegex);
     // setOutput(result2 ? onlyKor.join('') : '');
     console.log('Korean only : ', onlyKor.join('') )
+    console.log('Chapter: ', chapter )
+    console.log('verse: ', verse )
     
     setOutput(result);
   };
@@ -119,6 +129,20 @@ function App() {
         onChange={handleInputChange} 
         placeholder="준말을 입력하세요"
       />
+      <input 
+        type="number" 
+        value={chapter} 
+        onChange={handleChapterChange} 
+        placeholder="1"
+      />
+      <span>장</span>
+      <input 
+        type="number" 
+        value={verse} 
+        onChange={handleVerseChange} 
+        placeholder="1"
+      />
+      <span>절</span>
       <br />
       <button onClick={convertToStandard}>변환하기</button>
       <h2>변환 결과:</h2>
