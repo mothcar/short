@@ -151,18 +151,11 @@ function App() {
   return (
     <div className="App">
       <h1>성경 찾기</h1>
-      {/* <textarea 
-        value={input} 
-        onChange={handleInputChange} 
-        placeholder="준말을 입력하세요"
-        rows="4"
-        cols="50"
-      /> */}
       <input 
         type="text" 
         value={input} 
         onChange={handleInputChange} 
-        placeholder="준말을 입력하세요"
+        placeholder="약어를 입력하세요"
       />
       <input 
         type="number" 
@@ -181,7 +174,7 @@ function App() {
       <br />
       <button onClick={convertToStandard}>찾기</button>
       <h2>결과:<span>{origin} {chapter}장 {disVerse}절</span></h2>
-      <p>{output}</p>
+      <h3>{output}</h3>
 
       <div>
       <button onClick={readMore}>계속읽기</button>
