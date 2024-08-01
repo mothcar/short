@@ -149,7 +149,7 @@ function App() {
 
   return (
     <>
-      <div className="">
+      <div className="flex flex-col">
         <div className="mt-20 mb-10">
           <h1>성경 찾기</h1>
         </div>
@@ -161,14 +161,14 @@ function App() {
               value={input}
               onChange={handleInputChange}
               placeholder="셩경 약어"
-              className="max-w-30 mr-3 h-10 text-center rounded-md"
+              className="min-w-30 mr-3 h-10 text-center rounded-md"
             />
             <input
               type="number"
               value={chapter}
               onChange={handleChapterChange}
               placeholder="1"
-              className="max-w-20 ml-3 mr-2 text-right rounded-md"
+              className="max-w-14 ml-3 mr-2 text-right rounded-md"
             />
             <span className="m-auto">장</span>
             <input
@@ -176,7 +176,7 @@ function App() {
               value={verse}
               onChange={handleVerseChange}
               placeholder="1"
-              className="max-w-20 ml-3 mr-2 text-right rounded-md"
+              className="max-w-14 ml-3 mr-2 text-right rounded-md"
             />
             <span className="m-auto">절</span>
           </div>
