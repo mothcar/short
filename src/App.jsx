@@ -187,14 +187,23 @@ function App() {
               찾기
             </button>
           </div>
-          <div className="text-xl">
-            {origin} {chapter}장 {disVerse}절
-          </div>
+          {output.length > 1 ? (
+            <div className="text-xl mb-3">
+              {origin} {chapter}장 {disVerse}절
+            </div>
+          ) : (
+            ""
+          )}
+
           <div className="text-xl">{output}</div>
 
-          {output.length>1? <div className="mt-10">
-            <button onClick={readMore}>계속읽기</button>
-          </div> : ""}
+          {output.length > 1 ? (
+            <div className="mt-10">
+              <button onClick={readMore}>계속읽기</button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>
