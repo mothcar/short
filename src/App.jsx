@@ -149,8 +149,8 @@ function App() {
 
   return (
     <>
-      <div className="m-20">
-        <div className="mb-10">
+      <div className="">
+        <div className="mt-20 mb-10">
           <h1>성경 찾기</h1>
         </div>
 
