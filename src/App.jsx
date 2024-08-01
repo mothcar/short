@@ -151,7 +151,7 @@ function App() {
     <>
       <div className="flex flex-col">
         <div className="mt-20 mb-10">
-          <h1>성경 찾기</h1>
+          <div className="text-5xl">성경 찾기</div>
         </div>
 
         <div className="">
@@ -183,7 +183,7 @@ function App() {
 
           <br />
           <div className="flex justify-center">
-            <button className="min-w-52 mb-4" onClick={convertToStandard}>
+            <button className="min-w-52 mb-10" onClick={convertToStandard}>
               찾기
             </button>
           </div>
