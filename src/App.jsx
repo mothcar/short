@@ -71,10 +71,10 @@ const abbreviations = {
 };
 
 function App() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState("마");
   const [origin, setOrigin] = useState("");
-  const [chapter, setChapter] = useState("");
-  const [verse, setVerse] = useState("");
+  const [chapter, setChapter] = useState(1);
+  const [verse, setVerse] = useState(1);
   const [disVerse, setDisverse] = useState("");
   const [output, setOutput] = useState("");
   const [number, setNumber] = useState(0);
