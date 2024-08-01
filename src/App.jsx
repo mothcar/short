@@ -154,21 +154,21 @@ function App() {
           <h1>성경 찾기</h1>
         </div>
 
-        <div className="flex flex-col">
+        <div className="">
           <div className="flex justify-around">
             <input
               type="text"
               value={input}
               onChange={handleInputChange}
               placeholder="셩경 약어"
-              className="min-w-30 mr-3 h-10 text-center rounded-md"
+              className="max-w-24 h-10 text-center rounded-md"
             />
             <input
               type="number"
               value={chapter}
               onChange={handleChapterChange}
               placeholder="1"
-              className="max-w-14 ml-3 mr-2 text-right rounded-md"
+              className="max-w-14 ml-3 mr-2 text-center rounded-md"
             />
             <span className="m-auto">장</span>
             <input
@@ -176,7 +176,7 @@ function App() {
               value={verse}
               onChange={handleVerseChange}
               placeholder="1"
-              className="max-w-14 ml-3 mr-2 text-right rounded-md"
+              className="max-w-14 ml-3 mr-2 text-center rounded-md"
             />
             <span className="m-auto">절</span>
           </div>
