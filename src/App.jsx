@@ -155,7 +155,7 @@ function App() {
         </div>
 
         <div className="">
-          <div className="flex justify-around">
+          <div className="">
             <input
               type="text"
               value={input}
@@ -168,7 +168,7 @@ function App() {
               value={chapter}
               onChange={handleChapterChange}
               placeholder="1"
-              className="max-w-14 ml-3 mr-2 text-center rounded-md"
+              className="max-w-14 h-10 ml-3 mr-2 text-center rounded-md"
             />
             <span className="m-auto">장</span>
             <input
@@ -176,7 +176,7 @@ function App() {
               value={verse}
               onChange={handleVerseChange}
               placeholder="1"
-              className="max-w-14 ml-3 mr-2 text-center rounded-md"
+              className="max-w-14 h-10 ml-3 mr-2 text-center rounded-md"
             />
             <span className="m-auto">절</span>
           </div>
@@ -190,11 +190,11 @@ function App() {
           <div className="text-xl">
             {origin} {chapter}장 {disVerse}절
           </div>
-          <h3>{output}</h3>
+          <div className="text-xl">{output}</div>
 
-          <div className="mt-10">
+          {output.length>1? <div className="mt-10">
             <button onClick={readMore}>계속읽기</button>
-          </div>
+          </div> : ""}
         </div>
       </div>
     </>
