@@ -4,7 +4,6 @@ import "./App.css";
 
 const abbreviations = {
   창세기: ["창"],
-  "베드로 전서": ["벧전", "밷전"],
   출애굽기: ["출"],
   레위기: ["레", "래"],
   민수기: ["민"],
@@ -26,7 +25,7 @@ const abbreviations = {
   아가: ["아"],
   이사야: ["이"],
   예레미아: ["예"],
-  "예레미아 애가": ["예애"],
+  예레미아애가: ["예애"],
   에스겔: ["에스"],
   다니엘: ["단"],
   호세아: ["호"],
@@ -161,14 +160,14 @@ function App() {
               value={input}
               onChange={handleInputChange}
               placeholder="셩경 약어"
-              className="max-w-24 h-10 text-center rounded-md"
+              className="max-w-24 h-10 text-center border-2 rounded-lg border-sky-200 shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_10px_#08f,0_0_15px_#08f]" // 15, 30 -> 10, 15
             />
             <input
               type="number"
               value={chapter}
               onChange={handleChapterChange}
               placeholder="1"
-              className="max-w-14 h-10 ml-3 mr-2 text-center rounded-md"
+              className="max-w-14 h-10 ml-3 mr-2 text-center border-2 rounded-lg border-sky-200 shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_10px_#08f,0_0_15px_#08f]"
             />
             <span className="m-auto">장</span>
             <input
@@ -176,7 +175,7 @@ function App() {
               value={verse}
               onChange={handleVerseChange}
               placeholder="1"
-              className="max-w-14 h-10 ml-3 mr-2 text-center rounded-md"
+              className="max-w-14 h-10 ml-3 mr-2 text-center border-2 rounded-lg border-sky-200 shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_10px_#08f,0_0_15px_#08f]"
             />
             <span className="m-auto">절</span>
           </div>
