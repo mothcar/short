@@ -95,57 +95,6 @@ function App() {
     setNumber(0);
   };
 
-  // const convertToStandard = () => {
-  //   let result = input;
-
-  //   // 준말을 표준말로 변환하는 객체 생성
-  //   const abbrToStandard = {};
-  //   for (const [standard, abbrs] of Object.entries(abbreviations)) {
-  //     for (const abbr of abbrs) {
-  //       abbrToStandard[abbr] = standard;
-  //     }
-  //   }
-
-  //   // 긴 준말부터 처리하기 위해 키를 길이 순으로 정렬
-  //   const sortedAbbreviations = Object.keys(abbrToStandard).sort(
-  //     (a, b) => b.length - a.length
-  //   );
-
-  //   for (let abbr of sortedAbbreviations) {
-  //     const regex = new RegExp(abbr, "gi");
-  //     result = result.replace(regex, abbrToStandard[abbr]);
-  //   }
-
-  //   const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
-  //   const onlyKor = result.match(koreanRegex);
-  //   // setOutput(result2 ? onlyKor.join('') : '');
-  //   const chapterName = onlyKor.join("");
-  //   setOrigin(chapterName);
-  //   console.log('Korean only : ', chapterName )
-  //   // console.log('Chapter: ', chapter )
-  //   // console.log('verse: ', verse )
-  //   // console.log('Bible : ', bible)
-
-  //   if (chapterName in bible) {
-  //     const all = bible[chapterName];
-  //     // console.log("Find from Bible : ", all)
-  //     let chapterNum = chapterName + chapter + "장";
-  //     // console.log('Check name : ', chapterNum)
-  //     if (chapterNum in all) {
-  //       const chapAll = all[chapterNum];
-  //       // console.log("chpa: ", chapAll)
-  //       const newVerse = Number(verse) + Number(number);
-  //       if (newVerse in chapAll) {
-  //         const res = chapAll[newVerse];
-  //         // console.log("verse : ", res)
-  //         setOutput(res);
-  //         setDisverse(newVerse);
-  //       }
-  //     }
-  //   }
-  //   setNumber(number + 1);
-  // };
-
   const convertToStandard = () => {
     let result = input;
     console.log('After result : ', result)
@@ -164,8 +113,7 @@ function App() {
       const all = bible[origin];
       console.log("Find from Bible : ", all)
       let chapterNum = origin + chapter + "장";
-      if(input == '마') chapterNum = '마태복음1장'
-      // console.log('Check name : ', chapterNum)
+      console.log('chapterNum : ',  chapterNum)
       if (chapterNum in all) {
         const chapAll = all[chapterNum];
         // console.log("chpa: ", chapAll)
@@ -196,24 +144,6 @@ function App() {
     setNumber(0);
     setInput(name)
     setOrigin(name);
-    // if (name in bible) {
-    //   const all = bible[name];
-    //   // console.log("Find from Bible : ", all)
-    //   let chapterNum = name + chapter + "장";
-    //   // console.log('Check name : ', chapterNum)
-    //   if (chapterNum in all) {
-    //     const chapAll = all[chapterNum];
-    //     // console.log("chpa: ", chapAll)
-    //     const newVerse = Number(verse) + Number(number);
-    //     if (newVerse in chapAll) {
-    //       const res = chapAll[newVerse];
-    //       // console.log("verse : ", res)
-    //       setOutput(res);
-    //       setDisverse(newVerse);
-    //     }
-    //   }
-    // }
-    // setNumber(number + 1);
   };
 
   return (
