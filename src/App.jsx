@@ -45,7 +45,7 @@ const abbreviations = {
   누가복음: ["누", "눅", "누가복음"],
   요한복음: ["요", "요한복음"],
   사도행전: ["사", "사도행전"],
-  로마서: ["롬",'로마', "로마서"],
+  로마서: ["롬", "로마", "로마서"],
   고린도전서: ["고전", "고린도전서"],
   고린도후서: ["고후", "고린도후서"],
   갈라디아서: ["갈", "갈라디아서"],
@@ -117,7 +117,7 @@ function App() {
     // setOutput(result2 ? onlyKor.join('') : '');
     const chapterName = onlyKor.join("");
     setOrigin(chapterName);
-    // console.log('Korean only : ', chapterName )
+    console.log('Korean only : ', chapterName )
     // console.log('Chapter: ', chapter )
     // console.log('verse: ', verse )
     // console.log('Bible : ', bible)
@@ -146,11 +146,71 @@ function App() {
     convertToStandard();
   }
 
+  const names = [
+    "마태복음", '마가복음', '누가복음','요한복음','사도행전','로마서','고린도전서','고린도후서','갈라디아서','에베소서',
+    '빌립보서','골로새서','데살로니가전서','데살로니가후서','디모데전서','디모데후서','디도서','빌레몬서',
+    '히브리서','야고보서','베드로전서','베드로후서','요한1서','요한2서','요한3서','유다서','요한계시록'
+  ];
+  // const [selectedName, setSelectedName] = useState("");
+
+  const handleNameClick = (name) => {
+    setOrigin(name);
+    if (name in bible) {
+      const all = bible[name];
+      // console.log("Find from Bible : ", all)
+      let chapterNum = name + chapter + "장";
+      // console.log('Check name : ', chapterNum)
+      if (chapterNum in all) {
+        const chapAll = all[chapterNum];
+        // console.log("chpa: ", chapAll)
+        const newVerse = Number(verse) + Number(number);
+        if (newVerse in chapAll) {
+          const res = chapAll[newVerse];
+          // console.log("verse : ", res)
+          setOutput(res);
+          setDisverse(newVerse);
+        }
+      }
+    }
+    setNumber(number + 1);
+  };
+
   return (
     <>
       <div className="flex flex-col">
-        <div className="mt-20 mb-10">
+        <div className="mt-5 mb-3">
           <div className="text-5xl">성경 찾기</div>
+        </div>
+
+        <div className="mb-3">
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              maxWidth: "600px", // 최대 너비 설정
+              margin: "0 auto", // 중앙 정렬
+            }}
+          >
+            {names.map((name, index) => (
+              <div
+                key={index}
+                className="text-xs"
+                onClick={() => handleNameClick(name)}
+                style={{
+                  cursor: "pointer",
+                  margin: "2px",
+                  padding: "2px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  width: "calc(33.33% - 20px)", // 3개씩 배치를 위한 너비 설정
+                  boxSizing: "border-box",
+                }}
+              >
+                {name}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="">
