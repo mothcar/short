@@ -74,7 +74,6 @@ function App() {
   const [origin, setOrigin] = useState("");
   const [chapter, setChapter] = useState(1);
   const [verse, setVerse] = useState(1);
-  const [disVerse, setDisverse] = useState("");
   const [output, setOutput] = useState("");
   const [number, setNumber] = useState(0);
 
@@ -85,34 +84,42 @@ function App() {
   // let test = ""
 
   useEffect(() => {
-    console.log('mount : ', origin);
-    console.log('bible : ', bible)
-    console.log('origin : ', origin)
+    // console.log('mount : ', origin);
+    // console.log('bible : ', bible)
+    // console.log('origin : ', origin)
     
-    if (origin in bible) {
-      const all = bible[origin];
-      console.log("Find from Bible : ", all)
-      let chapterNum = origin + chapter + "장";
-      console.log('chapterNum : ',  chapterNum)
-      if (chapterNum in all) {
-        const chapAll = all[chapterNum];
-        // console.log("chpa: ", chapAll)
-        const newVerse = Number(verse) + Number(number);
-        if (newVerse in chapAll) {
-          const res = chapAll[newVerse];
-          // console.log("verse : ", res)
-          setOutput(res);
-          setDisverse(newVerse);
-        }
-      }
-    }
-    
+    // if (origin in bible) {
+    //   const all = bible[origin];
+    //   console.log("Find from Bible : ", all)
+    //   let chapterNum = origin + chapter + "장";
+    //   console.log('chapterNum : ',  chapterNum)
+    //   if (chapterNum in all) {
+    //     const chapAll = all[chapterNum];
+    //     // console.log("chpa: ", chapAll)
+    //     const newVerse = Number(verse) + Number(number);
+    //     if (newVerse in chapAll) {
+    //       const res = chapAll[newVerse];
+    //       // console.log("verse : ", res)
+    //       setOutput(res);
+    //       setVerse(newVerse);
+    //     }
+    //   }
+    // }
     // return console.log('unmount');
   }, [origin]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
+    let keyword = e.target.value
+    for (const [foundedWord, aliases] of Object.entries(chapterTitle)) {
+      if (aliases.some(alias => alias.toLowerCase() === keyword)) {
+        // console.log('foundedWord : ', foundedWord)
+        setOrigin(foundedWord)
+      }
+    }
+    // setOrigin(e.target.value);
     setNumber(0);
+    setVerse(1);
   };
   const handleChapterChange = (e) => {
     setChapter(e.target.value);
@@ -124,14 +131,31 @@ function App() {
   };
 
   const search = () => {
-    let keyword = input;
-    console.log('After keyword : ', keyword)
+    console.log('bible : ', bible)
+    console.log('origin : ', origin)
+
+    // for (const [foundedWord, aliases] of Object.entries(chapterTitle)) {
+    //   if (aliases.some(alias => alias.toLowerCase() === keyword)) {
+    //     console.log('foundedWord : ', foundedWord)
+    //     setOrigin(foundedWord)
+    //   }
+    // }
     
-    for (const [foundedWord, aliases] of Object.entries(chapterTitle)) {
-      if (aliases.some(alias => alias.toLowerCase() === keyword)) {
-        console.log('foundedWord : ', foundedWord)
-        // test = book
-        setOrigin(foundedWord)
+    if (origin in bible) {
+      const all = bible[origin];
+      // console.log("Find from Bible : ", all)
+      let chapterNum = origin + chapter + "장";
+      // console.log('chapterNum : ',  chapterNum)
+      if (chapterNum in all) {
+        const chapAll = all[chapterNum];
+        // console.log("chpa: ", chapAll)
+        const newVerse = Number(verse) + Number(number);
+        if (newVerse in chapAll) {
+          const res = chapAll[newVerse];
+          // console.log("verse : ", res)
+          setOutput(res);
+          setVerse(newVerse);
+        }
       }
     }
     setNumber(number + 1);
@@ -227,7 +251,7 @@ function App() {
           </div>
           {output.length > 1 ? (
             <div className="text-xl mb-3">
-              {origin} {chapter}장 {disVerse}절
+              {origin} {chapter}장 {verse}절
             </div>
           ) : (
             ""
