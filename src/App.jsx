@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { bible } from "./bible.js";
 import "./App.css";
 
-const abbreviations = {
-  창세기: ["창"],
+const chapterTitle = {
+  창세기: ["창", '창세기'],
   출애굽기: ["출"],
   레위기: ["레", "래"],
   민수기: ["민"],
@@ -24,13 +24,13 @@ const abbreviations = {
   전도서: ["전도"],
   아가: ["아"],
   이사야: ["이"],
-  예레미아: ["예"],
-  예레미아애가: ["예애"],
+  예레미아: ["렘", '에레미아'],
+  예레미아애가: ["렘애"],
   에스겔: ["에스"],
   다니엘: ["단"],
   호세아: ["호"],
   요엘: ["요엘"],
-  아모스: ["아모"],
+  아모스: ["암", '아모스'],
   오바댜: ["오바"],
   요나: ["요나"],
   미가: ["미"],
@@ -49,7 +49,7 @@ const abbreviations = {
   고린도전서: ["고전", "고린도전서"],
   고린도후서: ["고후", "고린도후서"],
   갈라디아서: ["갈", "갈라디아서"],
-  에베소서: ["에베", "에베소서"],
+  에베소서: ["엡", '앱', "에베소서"],
   빌립보서: ["빌", "빌립보서"],
   골로새서: ["골", "골로새서"],
   데살로니가전서: ["데전", "데살로니가전서"],
@@ -82,30 +82,10 @@ function App() {
     if(input == '마') setOrigin('마태복음')
   },[]) 
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-    setNumber(0);
-  };
-  const handleChapterChange = (e) => {
-    setChapter(e.target.value);
-    setNumber(0);
-  };
-  const handleVerseChange = (e) => {
-    setVerse(e.target.value);
-    setNumber(0);
-  };
+  // let test = ""
 
-  const convertToStandard = () => {
-    let result = input;
-    console.log('After result : ', result)
-    
-    for (const [book, aliases] of Object.entries(abbreviations)) {
-      if (aliases.some(alias => alias.toLowerCase() === result)) {
-        console.log('book : ', book)
-        setOrigin(book)
-      }
-    }
-
+  useEffect(() => {
+    console.log('mount : ', origin);
     console.log('bible : ', bible)
     console.log('origin : ', origin)
     
@@ -126,11 +106,39 @@ function App() {
         }
       }
     }
+    
+    // return console.log('unmount');
+  }, [origin]);
+
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    setNumber(0);
+  };
+  const handleChapterChange = (e) => {
+    setChapter(e.target.value);
+    setNumber(0);
+  };
+  const handleVerseChange = (e) => {
+    setVerse(e.target.value);
+    setNumber(0);
+  };
+
+  const search = () => {
+    let keyword = input;
+    console.log('After keyword : ', keyword)
+    
+    for (const [foundedWord, aliases] of Object.entries(chapterTitle)) {
+      if (aliases.some(alias => alias.toLowerCase() === keyword)) {
+        console.log('foundedWord : ', foundedWord)
+        // test = book
+        setOrigin(foundedWord)
+      }
+    }
     setNumber(number + 1);
   };
 
   function readMore() {
-    convertToStandard();
+    search();
   }
 
   const names = [
@@ -213,7 +221,7 @@ function App() {
 
           <br />
           <div className="flex justify-center">
-            <button className="min-w-52 mb-10" onClick={convertToStandard}>
+            <button className="min-w-52 mb-10" onClick={search}>
               찾기
             </button>
           </div>
