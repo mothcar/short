@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { bible } from "./bible.js";
 import "./App.css";
 
@@ -71,42 +71,14 @@ const chapterTitle = {
 
 function App() {
   const [input, setInput] = useState("마");
-  const [origin, setOrigin] = useState("");
+  const [origin, setOrigin] = useState("마태복음");
   const [chapter, setChapter] = useState(1);
   const [verse, setVerse] = useState(1);
   const [output, setOutput] = useState("");
   const [number, setNumber] = useState(0);
 
-  useEffect(()=> {
-    if(input == '마') setOrigin('마태복음')
-  },[]) 
-
-  // let test = ""
-
-  useEffect(() => {
-    // console.log('mount : ', origin);
-    // console.log('bible : ', bible)
-    // console.log('origin : ', origin)
-    
-    // if (origin in bible) {
-    //   const all = bible[origin];
-    //   console.log("Find from Bible : ", all)
-    //   let chapterNum = origin + chapter + "장";
-    //   console.log('chapterNum : ',  chapterNum)
-    //   if (chapterNum in all) {
-    //     const chapAll = all[chapterNum];
-    //     // console.log("chpa: ", chapAll)
-    //     const newVerse = Number(verse) + Number(number);
-    //     if (newVerse in chapAll) {
-    //       const res = chapAll[newVerse];
-    //       // console.log("verse : ", res)
-    //       setOutput(res);
-    //       setVerse(newVerse);
-    //     }
-    //   }
-    // }
-    // return console.log('unmount');
-  }, [origin]);
+  // useEffect(() => {
+  // }, [origin]);
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -133,13 +105,6 @@ function App() {
   const search = () => {
     console.log('bible : ', bible)
     console.log('origin : ', origin)
-
-    // for (const [foundedWord, aliases] of Object.entries(chapterTitle)) {
-    //   if (aliases.some(alias => alias.toLowerCase() === keyword)) {
-    //     console.log('foundedWord : ', foundedWord)
-    //     setOrigin(foundedWord)
-    //   }
-    // }
     
     if (origin in bible) {
       const all = bible[origin];
@@ -149,16 +114,20 @@ function App() {
       if (chapterNum in all) {
         const chapAll = all[chapterNum];
         // console.log("chpa: ", chapAll)
-        const newVerse = Number(verse) + Number(number);
-        if (newVerse in chapAll) {
-          const res = chapAll[newVerse];
+        console.log("verse : ", verse)
+        if (verse in chapAll) {
+          const res = chapAll[verse];
           // console.log("verse : ", res)
           setOutput(res);
-          setVerse(newVerse);
+          const addVerse = Number(verse) + 1
+          const num = Number(number) + 1 
+          console.log('Number : ', num)
+          setNumber(num);
+          setVerse(addVerse);
         }
       }
     }
-    setNumber(number + 1);
+    
   };
 
   function readMore() {
